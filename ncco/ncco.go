@@ -149,7 +149,9 @@ func (a StreamAction) prepare() Action {
 // InputAction uses pointers for the optional dtmf input
 type InputAction struct {
 	Action      string     `json:"action"`
+	Type        []string   `json:"type,omitempty"`
 	Dtmf        *DtmfInput `json:"dtmf,omitempty"`
+	Speech      *Speech    `json:"speech,omitempty"`
 	EventUrl    []string   `json:"eventUrl,omitempty"`
 	EventMethod string     `json:"eventMethod,omitempty"`
 }
@@ -165,6 +167,11 @@ type DtmfInput struct {
 	TimeOut      int  `json:"timeOut,omitempty"`
 	MaxDigits    int  `json:"maxDigits,omitempty"`
 	SubmitOnHash bool `json:"submitOnHash,omitempty"`
+}
+
+// Speech captures speech from user
+type Speech struct {
+	Context []string `json:"context,omitempty"`
 }
 
 // ConnectAction takes an Endpoint (of which there are many) and joins
